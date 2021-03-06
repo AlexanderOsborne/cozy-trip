@@ -5,7 +5,6 @@ RSpec.describe 'MapquestService', type: :feature do
     it 'It can return JSON' do
       search = MapquestService.coordinates("Boulder, Co")
 
-      # require 'pry'; binding.pry
     expect(search).to have_key(:results)
     expect(search[:results]).to be_an(Array)
     search[:results].each do |result|
