@@ -15,4 +15,10 @@ RSpec.describe 'MapquestService', type: :feature do
       end
     end
   end
+
+  it 'It can return coordinates' do
+    coordinates = LocationFacade.coordinates("Boulder, Co")
+    expect(coordinates[0].latitude).to eq(40.015831)
+    expect(coordinates[0].longitude).to eq(-105.27927)
+  end
 end
