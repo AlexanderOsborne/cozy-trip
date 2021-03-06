@@ -3,5 +3,6 @@ class Api::V1::LocationController < ApplicationController
     coordinates = LocationFacade.coordinates(params[:location])
     forcast = OpenweatherService.forcast(coordinates)
     require 'pry'; binding.pry
+    render json: ForcastSerializer.new(forcast)
   end
 end

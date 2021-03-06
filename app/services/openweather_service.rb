@@ -3,7 +3,6 @@ class OpenweatherService
 
     def forcast(coordinates)
       response = conn.get do |req|
-        # require 'pry'; binding.pry
         req.params['lat'] = coordinates[0].latitude
         req.params['lon'] = coordinates[0].longitude
         req.params['exclude'] = "alerts"
