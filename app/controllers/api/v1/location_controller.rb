@@ -4,5 +4,6 @@ class Api::V1::LocationController < ApplicationController
     forecast = OpenweatherService.forecast(coordinates)
     weather = WeatherFacade.weather(forecast)
     require 'pry'; binding.pry
+    render json: ForecastSerializer.new(weather)
   end
 end
