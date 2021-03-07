@@ -1,11 +1,12 @@
 class OpenweatherService
   class << self
 
-    def forcast(coordinates)
+    def forecast(coordinates)
       response = conn.get do |req|
         req.params['lat'] = coordinates[0].latitude
         req.params['lon'] = coordinates[0].longitude
-        req.params['exclude'] = "alerts"
+        req.params['exclude'] = "minutely,alerts"
+        req.params['units'] = "imperial"
       end
       parsed = parser(response)
     end

@@ -1,8 +1,8 @@
 class Api::V1::LocationController < ApplicationController
   def index
     coordinates = LocationFacade.coordinates(params[:location])
-    forcast = OpenweatherService.forcast(coordinates)
+    forecast = OpenweatherService.forecast(coordinates)
+    weather = WeatherFacade.weather(forecast)
     require 'pry'; binding.pry
-    render json: ForcastSerializer.new(forcast)
   end
 end
