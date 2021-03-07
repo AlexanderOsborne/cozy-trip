@@ -1,6 +1,6 @@
 class MapquestService
   class << self
-  
+    
     def coordinates(location)
       response = conn.get do |req|
         req.params['location'] = location
