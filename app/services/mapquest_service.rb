@@ -9,7 +9,6 @@ class MapquestService
     end
 
     def directions(from, to)
-      # require 'pry'; binding.pry
       response = conn.get("directions/v2/route") do |req|
         req.params['from'] = from
         req.params['to'] = to
