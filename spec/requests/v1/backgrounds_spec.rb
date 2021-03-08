@@ -6,13 +6,11 @@ RSpec.describe 'it returns an image' do
 
     expect(response).to be_successful
     expect(response.status).to eq(200)
-  #   require 'pry'; binding.pry
   end
 
   it 'Sadpaths' do
     get '/api/v1/backgrounds'
 
-    # require 'pry'; binding.pry
     expect(response.status).to eq(400)
   end
 end
