@@ -6,6 +6,6 @@ RSpec.describe 'it returns an image' do
 
     expect(response).to be_successful
     expect(response.status).to eq(200)
-    require 'pry'; binding.pry
+    # require 'pry'; binding.pry
   end
 end
