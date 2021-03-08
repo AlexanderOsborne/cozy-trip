@@ -2,7 +2,7 @@ class UnsplashService
   class << self
 
     def photo(location)
-      response = conn.get do |req|
+      response = conn.get('/photos/random') do |req|
         req.params['query'] = location
       end
       parsed = parser(response)
@@ -10,7 +10,7 @@ class UnsplashService
 
     private
     def conn
-      @@conn ||= Faraday.new(:url => 'https://api.unsplash.com/photos/random') do |req|
+      @@conn ||= Faraday.new(:url => 'https://api.unsplash.com') do |req|
         req.params['client_id'] = "#{ENV['UNSPLASH_KEY']}"
       end
     end
