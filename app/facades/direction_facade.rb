@@ -3,14 +3,20 @@ class DirectionFacade
 
     def travel_time(data)
       time = get_time(data)
-      # require 'pry'; binding.pry
+
     end
 
     def get_time(data)
       route = MapquestService.directions("#{data[:start]}", "#{data[:destination]}")
       time = route[:route][:realTime]
-      # require 'pry'; binding.pry
-      # formatted_time = distance_of_time_in_words(time)
+      duration(time)
+    end
+
+    def duration(seconds)
+      minutes, seconds = seconds.divmod(60)
+      hours, minutes = minutes.divmod(60)
+    
+      "#{hours.to_s.rjust(2)} hours #{minutes.to_s.rjust(2)} min"
     end
   end
 end

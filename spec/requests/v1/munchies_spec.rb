@@ -21,6 +21,6 @@ RSpec.describe 'Munchies Endpoint' do
     expect(munchie[:data][:attributes][:restaurant][:name]).to be_a(String)
     expect(munchie[:data][:attributes][:restaurant][:address]).to be_a(Array)
     
-    # require 'pry'; binding.pry
+    require 'pry'; binding.pry
   end
 end
