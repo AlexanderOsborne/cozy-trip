@@ -18,6 +18,7 @@ group :development, :test do
   gem 'figaro'
   gem 'simplecov'
   gem 'faraday'
+  gem 'bcrypt', '~> 3.1', '>= 3.1.11'
 end
 
 group :development do
