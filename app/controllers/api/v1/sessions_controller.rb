@@ -1,6 +1,8 @@
 class Api::V1::SessionsController < ApplicationController
 
-  def index
-    # require 'pry'; binding.pry
+  def create
+    user = User.new!(params)
+    require 'pry'; binding.pry
+    user.save
   end
 end

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :location, only: [:index]
       resources :backgrounds, only: [:index]
-      resources :sessions, only: [:index]
+      resources :sessions, only: [:create]
     end
   end
 end

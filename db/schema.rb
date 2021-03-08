@@ -16,8 +16,8 @@ ActiveRecord::Schema.define(version: 2021_03_08_215435) do
   enable_extension "plpgsql"
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
     t.string "email"
+    t.string "password"
     t.string "auth_token"
     t.index ["auth_token"], name: "index_users_on_auth_token", unique: true
   end
