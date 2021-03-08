@@ -16,7 +16,7 @@ class DirectionFacade
       minutes, seconds = seconds.divmod(60)
       hours, minutes = minutes.divmod(60)
     
-      "#{hours.to_s.rjust(2)} hours #{minutes.to_s.rjust(2)} min"
+      "#{hours.to_s.rjust(1)} hours #{minutes.to_s.rjust(2)} min"
     end
   end
 end

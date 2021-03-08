@@ -1,6 +1,10 @@
 class Api::V1::MunchiesController < ApplicationController
   def index
-    munchie = MunchieFacade.munchie(params)
-    render json: MunchieSerializer.new(munchie), status: 201 
+    begin
+      munchie = MunchieFacade.munchie(params)
+      render json: MunchieSerializer.new(munchie), status: 201 
+    rescue
+      render json: {"error" => {}}, status:400
+    end
   end
 end
