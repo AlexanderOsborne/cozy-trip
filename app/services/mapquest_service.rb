@@ -2,15 +2,24 @@ class MapquestService
   class << self
     
     def coordinates(location)
-      response = conn.get do |req|
+      response = conn.get("/geocoding/v1/address") do |req|
         req.params['location'] = location
+      end
+      parsed = parser(response)
+    end
+
+    def directions(from, to)
+      # require 'pry'; binding.pry
+      response = conn.get("directions/v2/route") do |req|
+        req.params['from'] = from
+        req.params['to'] = to
       end
       parsed = parser(response)
     end
 
   private
   def conn
-    @@conn ||= Faraday.new(:url => 'http://www.mapquestapi.com/geocoding/v1/address') do |req|
+    @@conn ||= Faraday.new(:url => 'http://www.mapquestapi.com') do |req|
       req.params['key'] = "#{ENV['GEOCODING_KEY']}"
     end
   end

@@ -22,4 +22,12 @@ RSpec.describe 'MapquestService' do
     expect(coordinates[0].latitude).to eq(40.015831)
     expect(coordinates[0].longitude).to eq(-105.27927)
   end
+
+  it 'It can return directions' do
+    directions = MapquestService.directions("Boulder,CO", "Fort Collins, CO")
+
+    # require 'pry'; binding.pry
+    expect(directions).to have_key(:route)
+    expect(directions).to have_key(:info)
+  end
 end
