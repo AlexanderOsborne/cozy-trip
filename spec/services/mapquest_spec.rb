@@ -1,9 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe 'MapquestService', type: :feature do
+RSpec.describe 'MapquestService' do
   describe 'It can connect to Mapquest API' do
     it 'It can return JSON' do
       search = MapquestService.coordinates("Boulder, Co")
+
 
     expect(search).to have_key(:results)
     expect(search[:results]).to be_an(Array)
