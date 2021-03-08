@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe 'it returns a forecast'do
   it 'it returns a forecast in JSON' do
     get '/api/v1/location?location=Boulder,Co'
+    
     expect(response).to be_successful
     expect(response.status).to eq(201)
 
