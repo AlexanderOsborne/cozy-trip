@@ -2,6 +2,7 @@ class YelpService
   class << self
 
     def search(data)
+      # require 'pry'; binding.pry
       response = conn.get('/v3/businesses/search') do |req|
         req.params['location'] = data[:destination]
         req.params['term'] = data[:food]

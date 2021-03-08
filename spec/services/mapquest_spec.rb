@@ -26,7 +26,6 @@ RSpec.describe 'MapquestService' do
   it 'It can return directions' do
     directions = MapquestService.directions("Boulder,CO", "Fort Collins, CO")
 
-    # require 'pry'; binding.pry
     expect(directions).to have_key(:route)
     expect(directions).to have_key(:info)
   end
