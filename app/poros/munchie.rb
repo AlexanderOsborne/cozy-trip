@@ -8,6 +8,7 @@ class Munchie
     destination_city = data[:destination]
     travel_time = travel_time = DirectionFacade.travel_time(data)
     forecast = SummaryForecastFacade.forecast(destination_city)
+    restaurant = RestaurantFacade.restaurant(data)
     require 'pry'; binding.pry
   end
 end
