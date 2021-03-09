@@ -1,8 +1,11 @@
 class Api::V1::SessionsController < ApplicationController
 
   def create
-    user = User.new(params)
-    require 'pry'; binding.pry
-    user.save
+    begin
+      user = User.find_by(email: params[:users][:email])
+      render json: UserSerializer.new(user),  status:200
+    rescue
+      render json: {"error" => "User credentials invalid"}, status:400
+    end
   end
 end
