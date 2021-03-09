@@ -9,7 +9,7 @@ class RoadtripFacade
       end_city = data[:destination]
       travel_time = Traveltime.new(route)
       weather_at_eta = ETAForecastFacade.forecast(forecast, route)
-      # require 'pry'; binding.pry
+      roadtrip = Roadtrip.new({start_city: start_city, end_city: end_city, travel_time: travel_time, weather_at_eta: weather_at_eta})
     end
   end
 end

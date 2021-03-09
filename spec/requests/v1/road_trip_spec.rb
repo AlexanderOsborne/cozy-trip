@@ -16,12 +16,14 @@ RSpec.describe 'it creates a road_trip' do
     
 
     expect(response).to be_successful
-    expect(response.status).to eq(200)
+    expect(response.status).to eq(201)
+    require 'pry'; binding.pry
+    
   end
 
-  # it 'Sadpaths' do
-  #   post '/api/v1/roadtrip'
+  it 'Sadpaths' do
+    post '/api/v1/roadtrip'
 
-  #   expect(response.status).to eq(400)
-  # end
+    expect(response.status).to eq(400)
+  end
 end
