@@ -1,10 +1,11 @@
 class Api::V1::UsersController < ApplicationController
 
   def create
-    user = User.new(user_params)
-    if user.save
+    begin
+      user = User.new(user_params)
+      user.save
       render json: UserSerializer.new(user),  status:201
-    else
+    rescue
       render json: {"error" => "User credentials invalid"}, status:400
     end
   end

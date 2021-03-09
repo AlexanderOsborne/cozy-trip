@@ -13,18 +13,18 @@ RSpec.describe 'it returns an image' do
     expect(response.status).to eq(201)
     
     user = JSON.parse(response.body, symbolize_names: true)
+
     expect(user).to be_a(Hash)
-    expect(user[:data][:id]).to eq(user.id)
-    expect(user[:data][:type]).to eq("users")
+    expect(user[:data][:id]).to be_a(String)
+    expect(user[:data][:type]).to be_a(String)
     expect(user[:data][:attributes].keys).to match_array([:email, :api_key])
-    expect(user[:data][:attributes][:email]).to eq(String)
-    expect(user[:data][:attributes][:api_key]).to eq(String)
-    # require 'pry'; binding.pry
+    expect(user[:data][:attributes][:email]).to be_a(String)
+    expect(user[:data][:attributes][:api_key]).to be_a(String)
   end
 
   it 'Sadpaths' do
     post '/api/v1/users'
-    require 'pry'; binding.pry
+ 
     expect(response.status).to eq(400)
   end
 end
