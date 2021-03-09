@@ -29,61 +29,64 @@ RSpec.describe 'it creates a road_trip' do
     expect(roadtrip[:data][:attributes][:weather_at_eta][:temperature]).to be_a(Float)
   end
 
-  # it 'Happy path, long trip' do
-  #   headers = {
-  #     'Accept' => 'application/json', 
-  #     'Content-Type' => 'application/json'
-  #   }
+  it 'Happy path, long trip' do
+    user = User.create(email: "admin@example.com", password: "password")
+    headers = {
+      'Accept' => 'application/json', 
+      'Content-Type' => 'application/json'
+    }
 
-  #   post '/api/v1/roadtrip', params: JSON.generate({
-  #     "origin": "New York,NY",
-  #     "destination": "Los Angles, CA",
-  #     "api_key": "jgn983hy48thw9begh98h4539h4"
-  #   }), headers: headers
+    post '/api/v1/roadtrip', params: JSON.generate({
+      "origin": "New York City, NY",
+      "destination": "Las Angeles, CA",
+      "api_key": "#{user.api_key}"
+    }), headers: headers
 
-  #   expect(response).to be_successful
-  #   expect(response.status).to eq(201)
+    require 'pry'; binding.pry
+    expect(response).to be_successful
+    expect(response.status).to eq(201)
 
-  #   # require 'pry'; binding.pry
-  #   roadtrip = JSON.parse(response.body, symbolize_names: true)
-  #   expect(roadtrip).to be_a(Hash)
-  #   expect(roadtrip[:data][:id]).to eq(nil)
-  #   expect(roadtrip[:data][:type]).to eq("roadtrip")
-  #   expect(roadtrip[:data][:attributes].keys).to match_array([:start_city, :end_city, :travel_time, :weather_at_eta])
-  #   expect(roadtrip[:data][:attributes][:start_city]).to be_a(String)
-  #   expect(roadtrip[:data][:attributes][:end_city]).to be_a(String)
-  #   expect(roadtrip[:data][:attributes][:travel_time]).to be_a(String)
-  #   expect(roadtrip[:data][:attributes][:weather_at_eta][:conditions]).to be_a(String)
-  #   expect(roadtrip[:data][:attributes][:weather_at_eta][:temperature]).to be_a(Float)
-  # end
+    roadtrip = JSON.parse(response.body, symbolize_names: true)
+    expect(roadtrip).to be_a(Hash)
+    expect(roadtrip[:data][:id]).to eq(nil)
+    expect(roadtrip[:data][:type]).to eq("roadtrip")
+    expect(roadtrip[:data][:attributes].keys).to match_array([:start_city, :end_city, :travel_time, :weather_at_eta])
+    expect(roadtrip[:data][:attributes][:start_city]).to be_a(String)
+    expect(roadtrip[:data][:attributes][:end_city]).to be_a(String)
+    expect(roadtrip[:data][:attributes][:travel_time]).to be_a(String)
+    expect(roadtrip[:data][:attributes][:weather_at_eta][:conditions]).to be_a(String)
+    expect(roadtrip[:data][:attributes][:weather_at_eta][:temperature]).to be_a(Float)
+  end
 
-  # it 'Happy path, impossible trip' do
-  #   headers = {
-  #     'Accept' => 'application/json', 
-  #     'Content-Type' => 'application/json'
-  #   }
+  it 'Happy path, impossible trip' do
+    user = User.create(email: "admin@example.com", password: "password")
+    
+    headers = {
+      'Accept' => 'application/json', 
+      'Content-Type' => 'application/json'
+    }
 
-  #   post '/api/v1/roadtrip', params: JSON.generate({
-  #     "origin": "New York,NY",
-  #     "destination": "London, UK",
-  #     "api_key": "jgn983hy48thw9begh98h4539h4"
-  #   }), headers: headers
+    post '/api/v1/roadtrip', params: JSON.generate({
+      "origin": "New York,NY",
+      "destination": "London, UK",
+      "api_key": "#{user.api_key}"
+    }), headers: headers
 
-  #   require 'pry'; binding.pry
-  #   expect(response).to be_successful
-  #   expect(response.status).to eq(201)
+    require 'pry'; binding.pry
+    expect(response).to be_successful
+    expect(response.status).to eq(201)
 
-  #   roadtrip = JSON.parse(response.body, symbolize_names: true)
-  #   expect(roadtrip).to be_a(Hash)
-  #   expect(roadtrip[:data][:id]).to eq(nil)
-  #   expect(roadtrip[:data][:type]).to eq("roadtrip")
-  #   expect(roadtrip[:data][:attributes].keys).to match_array([:start_city, :end_city, :travel_time, :weather_at_eta])
-  #   expect(roadtrip[:data][:attributes][:start_city]).to be_a(String)
-  #   expect(roadtrip[:data][:attributes][:end_city]).to be_a(String)
-  #   expect(roadtrip[:data][:attributes][:travel_time]).to be_a(String)
-  #   expect(roadtrip[:data][:attributes][:weather_at_eta][:conditions]).to be_a(String)
-  #   expect(roadtrip[:data][:attributes][:weather_at_eta][:temperature]).to be_a(Float)
-  # end
+    roadtrip = JSON.parse(response.body, symbolize_names: true)
+    expect(roadtrip).to be_a(Hash)
+    expect(roadtrip[:data][:id]).to eq(nil)
+    expect(roadtrip[:data][:type]).to eq("roadtrip")
+    expect(roadtrip[:data][:attributes].keys).to match_array([:start_city, :end_city, :travel_time, :weather_at_eta])
+    expect(roadtrip[:data][:attributes][:start_city]).to be_a(String)
+    expect(roadtrip[:data][:attributes][:end_city]).to be_a(String)
+    expect(roadtrip[:data][:attributes][:travel_time]).to be_a(String)
+    expect(roadtrip[:data][:attributes][:weather_at_eta][:conditions]).to be_a(String)
+    expect(roadtrip[:data][:attributes][:weather_at_eta][:temperature]).to be_a(Float)
+  end
   
   it 'Sadpaths, no user data' do
     post '/api/v1/roadtrip'
