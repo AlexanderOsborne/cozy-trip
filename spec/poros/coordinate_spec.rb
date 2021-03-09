@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe 'Creates a Coordinate'do
-it 'Returns Coordinates' do
+RSpec.describe 'Creates Coordinate'do
+it 'returns coordinates' do
   data = MapquestService.coordinates("Boulder, Co")
   location = data[:results][0]
   coordinate = Coordinate.new(location)
