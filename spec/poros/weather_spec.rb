@@ -35,5 +35,11 @@ it 'Returns current forecast' do
   expect(hourly.temperature).to be_a(Float)
   expect(hourly.conditions).to be_a(String)
   expect(hourly.icon).to be_a(String)
+
+  forecast = Forecast.new({current_weather: current, daily_weather: daily, hourly_weather: hourly})
+
+  expect(forecast.current_weather).to eq(current)
+  expect(forecast.daily_weather).to eq(daily)
+  expect(forecast.hourly_weather).to eq(hourly)
 end
 end
