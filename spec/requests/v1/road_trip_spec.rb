@@ -1,23 +1,27 @@
-# require 'rails_helper'
+require 'rails_helper'
 
-# RSpec.describe 'it creates a road_trip' do
-#   it 'Happy path' do
-#     headers = {
-#       'Accept' => 'application/json', 
-#       'Content-Type' => 'application/json'
-#     }
+RSpec.describe 'it creates a road_trip' do
+  it 'Happy path' do
+    headers = {
+      'Accept' => 'application/json', 
+      'Content-Type' => 'application/json'
+    }
 
-#     ost '/api/v1/sessions', params: JSON.generate("users": {email: "admin@example.com", password: "password"}), headers: headers
+    post '/api/v1/roadtrip', params: JSON.generate({
+      "origin": "Denver,CO",
+      "destination": "Pueblo,CO",
+      "api_key": "jgn983hy48thw9begh98h4539h4"
+    }), headers: headers
 
-#     post '/api/v1/roadtrip'
+    
 
-#     expect(response).to be_successful
-#     expect(response.status).to eq(200)
-#   end
+    expect(response).to be_successful
+    expect(response.status).to eq(200)
+  end
 
-#   it 'Sadpaths' do
-#     get '/api/v1/backgrounds'
+  # it 'Sadpaths' do
+  #   post '/api/v1/roadtrip'
 
-#     expect(response.status).to eq(400)
-#   end
-# end
+  #   expect(response.status).to eq(400)
+  # end
+end

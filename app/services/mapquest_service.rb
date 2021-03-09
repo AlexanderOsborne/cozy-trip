@@ -8,6 +8,14 @@ class MapquestService
       parsed = parser(response)
     end
 
+    def route(data)
+      response = conn.get('/directions/v2/route') do |req|
+        req.params['from'] = data[:origin]
+        req.params['to'] = data[:destination]
+      end
+      parsed = parser(response)
+    end
+
   private
   def conn
     @@conn ||= Faraday.new(:url => 'http://www.mapquestapi.com') do |req|
