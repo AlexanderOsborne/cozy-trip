@@ -57,26 +57,7 @@ This application allows a user to schedule, create, and invite their friends to 
 
 ### Installation
 
-1. Get a free API Key at [https://www.themoviedb.org/documentation/api](https://www.themoviedb.org/documentation/api)
-2. Fork and Clone the repo
-   ```
-   git clone https://github.com/viewingparty/viewing_party.git
-   ```
-3. Install gems
-     -- For list of Gems see [here](https://github.com/viewingparty/viewing_party/blob/main/Gemfile)
-   ```
-   bundle install
-   ```
-4. Setup the database: 
-   ```
-   rails db:setup
-   ```
-5. Enter your API and ENV variables in `config/application.yml`
-   ```
-   movie_api: 'ENTER YOUR API'
-   search_limit: '10'        #  less than or equal to 20
-   top_rated_limit: '50'     #  can be any size
-   ```
+
 
 
 
