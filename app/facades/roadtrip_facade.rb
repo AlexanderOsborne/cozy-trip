@@ -3,12 +3,13 @@ class RoadtripFacade
 
     def route(data)
       route = MapquestService.route(data)
-      if route[:info][:messages] == ["We are unable to route with the given locations."]
+      # require 'pry'; binding.pry
+      if route[:info][:statuscode] == 402
         coordinates = LocationFacade.coordinates(data[:destination])
         forecast = {}
         start_city = data[:origin]
         end_city = data[:destination]
-        travel_time = "impossible"
+        travel_time = "Invalid route. Route is either impossible or currently blocked"
         weather_at_eta = {}
         roadtrip = Roadtrip.new({start_city: start_city, end_city: end_city, travel_time: travel_time, weather_at_eta: weather_at_eta})
       else
