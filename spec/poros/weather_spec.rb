@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Creates weather poros'do
 it 'Returns current forecast' do
-  data = MapquestService.coordinates("Boulder, Co")
+  data = MapquestService.coordinates("Dallas, TX")
   location = data[:results][0]
   coordinates = [Coordinate.new(location)]
   
@@ -16,7 +16,7 @@ it 'Returns current forecast' do
   expect(current.sunset).to be_a(Time)
   expect(current.feels_like).to be_a(Float)
   expect(current.humidity).to be_a(Integer)
-  expect(current.uvi).to be_a(Float)
+  expect(current.uvi).to be_a(Integer)
   expect(current.visibility).to be_a(Integer)
   
   daily = DailyWeather.new(weather[:daily][0])

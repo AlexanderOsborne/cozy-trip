@@ -18,6 +18,6 @@ class Traveltime
     minutes, seconds = seconds.divmod(60)
     hours, minutes = minutes.divmod(60)
     days, hours = hours.divmod(24)
-    "#{days.to_s.rjust(3)}days #{hours.to_s.rjust(2)}hours #{minutes.to_s.rjust(2)}minutes"
+    "#{days.to_s.rjust(2)} days #{hours.to_s.rjust(2)} hours #{minutes.to_s.rjust(2)} minutes"
   end
 end

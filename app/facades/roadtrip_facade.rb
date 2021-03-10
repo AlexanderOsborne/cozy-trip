@@ -3,7 +3,6 @@ class RoadtripFacade
 
     def route(data)
       route = MapquestService.route(data)
-      # require 'pry'; binding.pry
       if route[:info][:messages] == ["We are unable to route with the given locations."]
         coordinates = LocationFacade.coordinates(data[:destination])
         forecast = {}
