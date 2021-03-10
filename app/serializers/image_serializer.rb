@@ -3,5 +3,5 @@ class ImageSerializer
   
   set_type :image
   set_id :id
-  attributes :location, :url, :photographer, :portfolio
+  attributes :image
 end

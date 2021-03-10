@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Creates weather poros'do
 it 'Returns current forecast' do
-  data = MapquestService.coordinates("Boulder, Co")
+  data = MapquestService.coordinates("Dallas, TX")
   location = data[:results][0]
   coordinates = [Coordinate.new(location)]
   

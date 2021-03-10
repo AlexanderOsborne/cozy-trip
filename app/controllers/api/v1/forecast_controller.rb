@@ -1,4 +1,4 @@
-class Api::V1::LocationController < ApplicationController
+class Api::V1::ForecastController < ApplicationController
   def index
     begin
       coordinates = LocationFacade.coordinates(params[:location])

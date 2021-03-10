@@ -1,18 +1,14 @@
 class Image
   attr_reader :id,
-              :location,
-              :url,
-              :photographer,
-              :portfolio
-
+              :image
   def initialize(data)
     @id = nil
-    image_hash(data)
+    @image = image_hash(data)
   end
 
   def image_hash(data)
     {
-      image: {
+      details: {
         location: data[:location][:title],
         url: data[:urls][:regular]
       },
