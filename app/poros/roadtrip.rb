@@ -14,7 +14,7 @@ class Roadtrip
   end
 
   def time(data)
-    if data[:travel_time] == "impossible"
+    if data[:travel_time] == "Invalid route. Route is either impossible or currently blocked"
       data[:travel_time]
     else
       data[:travel_time].travel_time

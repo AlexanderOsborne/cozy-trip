@@ -109,7 +109,7 @@ RSpec.describe 'it creates a road_trip' do
     expect(roadtrip[:data][:attributes].keys).to match_array([:start_city, :end_city, :travel_time, :weather_at_eta])
     expect(roadtrip[:data][:attributes][:start_city]).to be_a(String)
     expect(roadtrip[:data][:attributes][:end_city]).to be_a(String)
-    expect(roadtrip[:data][:attributes][:travel_time]).to eq("impossible")
+    expect(roadtrip[:data][:attributes][:travel_time]).to eq("Invalid route. Route is either impossible or currently blocked")
     expect(roadtrip[:data][:attributes][:weather_at_eta]).to be_a(Hash)
   end
   
