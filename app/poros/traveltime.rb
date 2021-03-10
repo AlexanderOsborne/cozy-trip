@@ -1,7 +1,6 @@
 class Traveltime
   attr_reader :travel_time
   def initialize(data)
-    require 'pry'; binding.pry
     if data[:route][:realTime] > 86400
       @travel_time = day_duration(data[:route][:realTime])
     else

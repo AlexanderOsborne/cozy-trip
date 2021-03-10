@@ -38,11 +38,10 @@ RSpec.describe 'it creates a road_trip' do
 
     post '/api/v1/roadtrip', params: JSON.generate({
       "origin": "New York City, NY",
-      "destination": "Las Angeles, CA",
+      "destination": "Los Angeles, CA",
       "api_key": "#{user.api_key}"
     }), headers: headers
 
-    require 'pry'; binding.pry
     expect(response).to be_successful
     expect(response.status).to eq(201)
 
@@ -72,10 +71,9 @@ RSpec.describe 'it creates a road_trip' do
       "api_key": "#{user.api_key}"
     }), headers: headers
 
-    require 'pry'; binding.pry
     expect(response).to be_successful
     expect(response.status).to eq(201)
-
+    
     roadtrip = JSON.parse(response.body, symbolize_names: true)
     expect(roadtrip).to be_a(Hash)
     expect(roadtrip[:data][:id]).to eq(nil)
@@ -83,9 +81,8 @@ RSpec.describe 'it creates a road_trip' do
     expect(roadtrip[:data][:attributes].keys).to match_array([:start_city, :end_city, :travel_time, :weather_at_eta])
     expect(roadtrip[:data][:attributes][:start_city]).to be_a(String)
     expect(roadtrip[:data][:attributes][:end_city]).to be_a(String)
-    expect(roadtrip[:data][:attributes][:travel_time]).to be_a(String)
-    expect(roadtrip[:data][:attributes][:weather_at_eta][:conditions]).to be_a(String)
-    expect(roadtrip[:data][:attributes][:weather_at_eta][:temperature]).to be_a(Float)
+    expect(roadtrip[:data][:attributes][:travel_time]).to eq("impossible")
+    expect(roadtrip[:data][:attributes][:weather_at_eta]).to be_a(Hash)
   end
   
   it 'Sadpaths, no user data' do
