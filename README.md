@@ -1,24 +1,13 @@
 # Cozy Weather
 
-This was built from the base repo: [viewing party project](https://backend.turing.io/module3/projects/viewing_party) from [Turing School of Software and Design](https://turing.io)
-
 ### About this App
+
+This application was built to allows users to plan for a roadtrip. 
+
+Users are able to query the API to find create routes with directions and recieve the weather forecast for thier destination on thier estimated arrival time.
 
 This application allows a user to schedule, create, and invite their friends to movie nights!
 
-After registering with our application, we allow users to:
-* Login securely to their account
-* Request, approve, and deny other users as their friends
-* Browse for any movie they want to watch
-   * They can chose to search for movies by name, popularity, or genre!
-* Create a movie party and invite their friends to it!
-
-When searching for movies, users can use helpful information to guide their choices, such as:
-* The Movie's Theatrical Poster
-* Top Billed Cast
-* Notable Reviews
-
-While users cannot currently watch the movies they select for their parties through this application, it is our hope that providing an easy and informative application brings their movie night experience one step closer to reality!
 
 <!-- [AWS here](https://www.example.com) -->
 
@@ -42,7 +31,6 @@ While users cannot currently watch the movies they select for their parties thro
       <a href="#about-the-project">About The Project</a>
       <ul>
         <li><a href="#built-with">Built With</a></li>
-        <li><a href="#schema">Schema</a></li>
       </ul>
     </li>
     <li>
@@ -62,12 +50,7 @@ While users cannot currently watch the movies they select for their parties thro
 
 * [Ruby on Rails](https://rubyonrails.org/)
 * [RSpec](https://github.com/rspec/rspec-rails)
-* [Tailwinds](https://tailwindcss.com)
-* [Travis CI](https://travis-ci.com/)
-* [JavaScript](https://www.javascript.com)
 
-### Schema
-![Screen Shot 2021-03-04 at 9 24 16 PM](https://user-images.githubusercontent.com/64919819/110067066-21913a00-7d30-11eb-8d2e-cfc26aa93a22.png)
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -94,39 +77,8 @@ While users cannot currently watch the movies they select for their parties thro
    search_limit: '10'        #  less than or equal to 20
    top_rated_limit: '50'     #  can be any size
    ```
-   
- ### Docker
-Several helper scripts have been created. 
 
 
-This command will wind down any containers and setup your containers and database. It will exit gracefully if docker is inproperly installed. Once this runs you must run ```docker-compose up``` to relaunch your container.
-
-```
-/bin/docker/setup
-```
-
-Once your container is up and running you have access to the following.
-
-
-This command allows you to run a rails console in your image
-```
-bin/docker/console
-```
-
-This command allows you to run various rails commands within your container
-```
-bin/docker/rails
-```
-
-This command will allow you to run rake commands in the container, if not given a command it will default to test
-```
-bin/docker/rake
-```
-
-This command will run Rspec in your container
-```
-bin/docker/rpsec
-```
 
 <!-- CONTRIBUTING -->
 ## Contributing
@@ -151,7 +103,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Project Link: [https://github.com/viewingparty/viewing_party](https://github.com/ribbansmax/viewing_party)
+Project Link: [https://github.com/AlexanderOsborne/cozy-trip](https://github.com/AlexanderOsborne/cozy-trip)
 
 See the [open issues](https://github.com/viewingparty/viewing_party/issues) for a list of proposed features (and known issues).
 
@@ -170,12 +122,10 @@ See the [open issues](https://github.com/viewingparty/viewing_party/issues) for 
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/viewingparty/viewing_party.svg?style=for-the-badge
-[contributors-url]: https://github.com/viewingparty/viewing_party/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/viewingparty/viewing_party.svg?style=for-the-badge
-[forks-url]: https://github.com/viewingparty/viewing_party/network/members
-[stars-shield]: https://img.shields.io/github/stars/viewingparty/viewing_party.svg?style=for-the-badge
-[stars-url]: https://github.com/viewingparty/viewing_party/stargazers
-[issues-shield]: https://img.shields.io/github/issues/viewingparty/viewing_party.svg?style=for-the-badge
-[issues-url]: https://github.com/viewingparty/viewing_party/issues
-[product-screenshot]: images/screenshot.png
+[contributors-shield]: https://github.com/AlexanderOsborne/cozy-trip/graphs/contributors.svg?style=for-the-badge
+[contributors-url]: https://github.com/AlexanderOsborne/cozy-trip/graphs/contributors
+[stars-shield]: https://github.com/AlexanderOsborne/cozy-trip/graphss.svg?style=for-the-badge
+[stars-url]: https://github.com/AlexanderOsborne/cozy-trip/graphs/stargazers
+[issues-shield]: https://github.com/AlexanderOsborne/cozy-trip/graphs.svg?style=for-the-badge
+[issues-url]: https://github.com/AlexanderOsborne/cozy-trip/graphs/issues
+
