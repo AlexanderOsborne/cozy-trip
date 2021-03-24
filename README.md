@@ -2,11 +2,9 @@
 
 ### About this App
 
-This application was built to allows users to plan for a roadtrip. 
+This application was built to power a front end application that allows users to log in, plan a roadtrip, forecast the weather currently and on arrival. 
 
-Users are able to query the API to find create routes with directions and recieve the weather forecast for thier destination on thier estimated arrival time.
-
-This application allows a user to schedule, create, and invite their friends to movie nights!
+Users are able to query the API to find create routes with directions and recieve the weather forecast for thier destination on thier estimated arrival time as well as an image related to thier search.
 
 
 <!-- [AWS here](https://www.example.com) -->
@@ -38,6 +36,12 @@ This application allows a user to schedule, create, and invite their friends to 
       <ul>
         <li><a href="#installation">Installation</a></li>
       </ul>
+      <ul>
+        <li><a href="#usage">Usage</a></li>
+      </ul>
+      <ul>
+        <li><a href="#testing">Testing</a></li>
+      </ul>
     </li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
@@ -50,16 +54,235 @@ This application allows a user to schedule, create, and invite their friends to 
 
 * [Ruby on Rails](https://rubyonrails.org/)
 * [RSpec](https://github.com/rspec/rspec-rails)
+* [OpenWeather API](https://openweathermap.org/)
+* [Mapquest API](https://developer.mapquest.com/)
+* [Unsplash API](https://unsplash.com/developers)
+* [JSONAPI-Serializer](https://github.com/jsonapi-serializer/jsonapi-serializer)
 
 
 <!-- GETTING STARTED -->
 ## Getting Started
 
+This project is currently not deployed with any online platforms. So in order to utilize these data endpoints you will have to Fork/clone and test the endpoints locally.
+
+## Prerequisites
+- Ruby 2.5.3
+- Rails 5.2.4.3
+- Postgresql (Most recent version)
+
 ### Installation
 
+1. Clone the repo
+  ```
+  git clone https://github.com/AlexanderOsborne/cozy-trip.git
+  ```
+  
+2. Install dependencies, gem file can be found [here](https://github.com/AlexanderOsborne/cozy-trip/blob/main/Gemfile).
+  ```
+  bundle install
+  ```
+  
+3. Create DB and seed
+  ```
+  rake db:{drop,create,migrate}
+  ```
+  
+4. Figaro install, this will create an application.yml to house your API keys.
+  ```
+  bundle exec figaro install
+  ```
+
+5. Add API keys to application.yml 
+  Keys can be obtained here
+  - [Geocoding](https://developer.mapquest.com/)
+  - [OpenWeather](https://openweathermap.org/)
+  - [Unsplash](https://unsplash.com/developers)
+
+```
+GEOCODING_KEY: <Your key here]>
+OPENWEATHER_KEY: <Your key here>
+UNSPLASH_KEY: <Your key here>
+```
+
+6. Launch local server
+  ```
+  rails s
+  ```
+
+<!-- USAGE -->
+## Usage
+[Postman](https://www.postman.com/) is recommended to run these endpoints but they can also be done via your local server.
+
+1. Retrieve weather for a city, returns 7 daily forecast and 48 hourly forecast.
+```
+GET /api/v1/forecast?location=denver,co
+Content-Type: application/json
+Accept: application/json
+```
+Example response
+```
+{
+  "data": {
+    "id": null,
+    "type": "forecast",
+    "attributes": {
+      "current_weather": {
+        "datetime": "2020-09-30 13:27:03 -0600",
+        "temperature": 79.4,
+        etc
+      },
+      "daily_weather": [
+        {
+          "date": "2020-10-01",
+          "sunrise": "2020-10-01 06:10:43 -0600",
+          etc
+        },
+        {...} etc
+      ],
+      "hourly_weather": [
+        {
+          "time": "14:00:00",
+          "conditions": "cloudy with a chance of meatballs",
+          etc
+        },
+        {...} etc
+      ]
+    }
+  }
+}
+```
+
+2. Background image for a city, returns an image associated with the destination.
+```
+GET /api/v1/backgrounds?location=denver,co
+Content-Type: application/json
+Accept: application/json
+```
+
+Expected response
+```
+status: 200
+body:
+
+{
+  "data": {
+    "type": "image",
+    "id": null,
+    "attributes": {
+      "image": {
+        "location": "denver,co",
+        "image_url": "https://unsplash.com/get/54e6d4444f50a814f1dc8460962930761c38d6ed534c704c7c2878dd954dc451_640.jpg",
+        "credit": {
+          "source": "unsplash.com",
+          "author": "quinntheislander",
+          "logo": "https://unsplash.com/static/img/logo_square.png"
+        }
+      }
+    }
+  }
+}
+
+```
+
+3. User registration, allows a user to register.
+```
+POST /api/v1/users
+Content-Type: application/json
+Accept: application/json
+
+{
+  "email": "whatever@example.com",
+  "password": "password",
+  "password_confirmation": "password"
+}
+```
+
+Expected response
+```
+status: 201
+body:
+
+{
+  "data": {
+    "type": "users",
+    "id": "1",
+    "attributes": {
+      "email": "whatever@example.com",
+      "api_key": "jgn983hy48thw9begh98h4539h4"
+    }
+  }
+}
+
+```
+
+4. Login, this allows a user to log in and create roadtrips.
+```
+POST /api/v1/sessions
+Content-Type: application/json
+Accept: application/json
+
+{
+  "email": "whatever@example.com",
+  "password": "password"
+}
+```
+
+Expected response
+```
+status: 200
+body:
+
+{
+  "data": {
+    "type": "users",
+    "id": "1",
+    "attributes": {
+      "email": "whatever@example.com",
+      "api_key": "jgn983hy48thw9begh98h4539h4"
+    }
+  }
+}
+```
+
+5. Road trip, this will return travel time and forecast for arrival. Will return an impossible trip if no route overland exsist or if the route is disabled(bridge out).
+```
+POST /api/v1/road_trip
+Content-Type: application/json
+Accept: application/json
+
+body:
+
+{
+  "origin": "Denver,CO",
+  "destination": "Pueblo,CO",
+  "api_key": "jgn983hy48thw9begh98h4539h4"
+}
+```
+
+Expected response
+```
+{
+  "data": {
+    "id": null,
+    "type": "roadtrip",
+    "attributes": {
+      "start_city": "Denver, CO",
+      "end_city": "Estes Park, CO",
+      "travel_time": "2 hours, 13 minutes"
+      "weather_at_eta": {
+        "temperature": 59.4,
+        "conditions": "partly cloudy with a chance of meatballs"
+      }
+    }
+  }
+}
+```
 
 
-
+<!-- TESTING -->
+## Testing
+ 
+The sweater_weather application is fully tested using RSpec reporting ~100% test coverage determined by SimpleCov. To run the test suite, setup the application and run ```bundle exec rspec``` in the terminal. To run a specific test run ```bundle exec rspec <test file path>```. To open the coverage report generated by SimpleCov run ```open coverage/index.html```.
 
 <!-- CONTRIBUTING -->
 ## Contributing
@@ -78,7 +301,6 @@ Contributions are what make the open source community such an amazing place to b
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
-
 
 
 <!-- CONTACT -->
