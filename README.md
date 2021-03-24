@@ -325,10 +325,13 @@ See the [open issues](https://github.com/viewingparty/viewing_party/issues) for 
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://github.com/AlexanderOsborne/cozy-trip/graphs/contributors.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/AlexanderOsborne/cozy-trip.svg?style=for-the-badge
 [contributors-url]: https://github.com/AlexanderOsborne/cozy-trip/graphs/contributors
-[stars-shield]: https://github.com/AlexanderOsborne/cozy-trip/graphss.svg?style=for-the-badge
-[stars-url]: https://github.com/AlexanderOsborne/cozy-trip/graphs/stargazers
-[issues-shield]: https://github.com/AlexanderOsborne/cozy-trip/graphs.svg?style=for-the-badge
-[issues-url]: https://github.com/AlexanderOsborne/cozy-trip/graphs/issues
+[forks-shield]: https://img.shields.io/github/forks/AlexanderOsborne/cozy-trip.svg?style=for-the-badge
+[forks-url]: https://github.com/AlexanderOsborne/cozy-trip/network/members
+[stars-shield]: https://img.shields.io/github/stars/AlexanderOsborne/cozy-trip.svg?style=for-the-badge
+[stars-url]: https://github.com/AlexanderOsborne/cozy-trip/stargazers
+[issues-shield]: https://img.shields.io/github/issues/AlexanderOsborne/cozy-trip.svg?style=for-the-badge
+[issues-url]: https://github.com/AlexanderOsborne/cozy-trip/issues
+[product-screenshot]: images/screenshot.png
 
