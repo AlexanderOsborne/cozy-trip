@@ -2,7 +2,7 @@
 
 ### About this App
 
-This application was built to power a front end application that allows users to log in, plan a roadtrip, forecast the weather currently and on arrival. 
+This API was built to power a front end application that allows users to log in, plan a roadtrip, and receive both current forecast and the weather when they will arrival.
 
 Users are able to query the API to find create routes for directions and recieve the weather forecast for thier destination on thier estimated arrival time. They can also retrieve an image related to thier search.
 
